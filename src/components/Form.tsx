@@ -15,7 +15,10 @@ const Form = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Username or email address</label>
         <input {...register("login")} />
-        <label>Password</label>
+        <div className="lable-password">
+          <label>Password</label>
+          <a href="https://github.com/password_reset">Forgot password?</a>
+        </div>
         <input {...register("password", { required: true })} />
         {errors.password && <span>This field is required</span>}
         

@@ -1,7 +1,15 @@
-/* .form-section {
-} */
+.form-section {
+  padding: 16px;;
+  background-color: #f6f8fa;
+  border: 1px solid hsla(210,18%,87%,1);
+  border-radius: 6px;
+}
 
 form {
   display: flex;
   flex-direction: column;
 }
+
+/* .lable-password {
+
+} */
