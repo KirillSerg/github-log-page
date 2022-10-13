@@ -1,0 +1,46 @@
+.form-section {
+  min-width: 264px;
+  padding: 16px;;
+  background-color: #f6f8fa;
+  border: 1px solid hsla(210,18%,87%,1);
+  border-radius: 6px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    input {
+      border-style: none;
+      margin-bottom: 16px;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 14px;
+      line-height: 20px;
+
+      &:focus-visible{
+        border-color: #0969da;
+        outline: none;
+        box-shadow: inset 0 0 0 1px #0969da;
+      }
+    }
+
+    .lable-password {
+      display: flex;
+      justify-content: space-between;
+    } 
+
+    .submit-btn {
+      border: none;
+      border-radius: 6px;
+      color: white;
+      padding: 5px 16px;
+      background-color: #2da44e;
+      font-weight:600;
+    }
+  }
+}
+
+
+

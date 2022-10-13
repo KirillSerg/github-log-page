@@ -1,31 +1,62 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import "./Form.css";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import "./Form.scss";
 
-type Inputs = {
-  login: string,
-  password: string,
-};
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .required("Please, enter a valid email")
+      .email("Please, enter a valid email"),
+    password: yup.string().required("Enter password"),
+  })
+  .required();
+
+interface Inputs {
+  email: string;
+  password: string;
+}
+
 
 const Form = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Inputs>({
+    mode: "onSubmit",
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data: Inputs) => {
+   
+      console.log(data);
+      
+    reset();
+  };
 
   return (
     <div className="form-section">
+      {errors?.email && <span style={{color:"red"}}>{errors?.email?.message || "Error!"}</span>}
+      {errors?.password && (
+          <span style={{color:"red"}}>{errors?.password?.message || "This field is required!"}</span>
+        )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Username or email address</label>
-        <input {...register("login")} />
+        <input type="text" {...register("email")} />
+        
         <div className="lable-password">
-          <label>Password</label>
+          <label>Password:</label>
           <a href="https://github.com/password_reset">Forgot password?</a>
         </div>
-        <input {...register("password", { required: true })} />
-        {errors.password && <span>This field is required</span>}
+        <input type="password" {...register("password", { required: true })} />
         
-        <input type="submit" />
+        <input className="submit-btn" type="submit" value="Sing in" />
       </form>
     </div>
   );
-}
+};
 
 export default Form;
